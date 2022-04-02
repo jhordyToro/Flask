@@ -1,23 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    {% if user_ip %}
+{% extends 'base.html' %} <!-- esta es la manera de extender otros archivos o heredarlos hacia otro y se configuran unos a otros mediante bloques -->
+{% import 'macros.html' as macros %}
+
+<!-- este bloque esta enlasado al que fue eredado asi que lo que este adentro actuara igual con el bloque heredado -->
+<!-- 'super()' es para convinar dos bloques sin que uno sobrescriba a otro -->
+{% block title %} 
+    {{super()}} 
+    Jhordy
+{% endblock %} <!-- es importante cerrar los bloques -->
+
+<!-- la doble llave es para decirle al programa que esta tratando con una variable "{{ example }}" -->
+
+{% block content %} <!-- este bloque esta enlazado a base.html -->
+    {% if user_ip %} <!-- de esta manera se pueden generar condicionales dentro de esta -->
     <h1>Hello World, By Flask... your ip is {{user_ip}} :D</h1>
     {% else %}
-    <a href="{{ url_for('index') }}">ir a inicio</a>
-    {% endif %}
+    <a href="{{ url_for('index') }}">ir a inicio</a> <!-- de esta manera de llama a una ruta del archivo main.py "como le dicen en FastAPI el Path parameter decorator" -->
+    {% endif %} <!-- siempre hay que cerrar todo es como las etiquetas en HTML -->
 
     <ul>
         {% for todo in todos %}
-        <li>{{todo}}</li>
+        {{ macros.macro_todo(todo) }}
         {% endfor %}
     </ul>
-
-</body>
-</html>
+{% endblock %} <!-- TODO ES TODO -->

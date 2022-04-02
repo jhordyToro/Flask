@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Flask | {% endblock %}</title> <!-- el bloque en particular es para describir un titulo y se le hereda al 'hello.html' -->
+</head>
+<body>
+    {% block content %} <!-- este bloque en particular describe a un contenido el cual es heredado -->
+    
+    {% endblock %}
+</body>
+</html>
