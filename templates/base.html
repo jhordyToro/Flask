@@ -7,6 +7,7 @@
     <title>{% block title %}Flask | {% endblock %}</title> <!-- el bloque en particular es para describir un titulo y se le hereda al 'hello.html' -->
 </head>
 <body>
+    {% include 'navbar.html' %}
     {% block content %} <!-- este bloque en particular describe a un contenido el cual es heredado -->
     
     {% endblock %}
