@@ -1,3 +1,11 @@
+body {
+  height: 665px;
+  background-image: url("https://64.media.tumblr.com/d6bea5eda93d39d907776183ff476ac3/tumblr_mvike4lRYO1qfxxzto1_500.gifv");
+  background-size: cover;
+  background-repeat:no-repeat;
+  background-position: center center;
+}
+
 * {
     font-family: sans-serif;
 }

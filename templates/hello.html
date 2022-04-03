@@ -11,6 +11,7 @@
 <!-- la doble llave es para decirle al programa que esta tratando con una variable "{{ example }}" -->
 
 {% block content %} <!-- este bloque esta enlazado a base.html -->
+    {{ super() }}
     {% if user_ip %} <!-- de esta manera se pueden generar condicionales dentro de esta -->
     <h1>Hello World, By Flask... your ip is {{user_ip}} :D</h1>
     {% else %}
