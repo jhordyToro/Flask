@@ -1,16 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends 'bootstrap/base.html' %}
+
+{% block head %}
+    {{super()}}
     <title>{% block title %}Flask | {% endblock %}</title> <!-- el bloque en particular es para describir un titulo y se le hereda al 'hello.html' -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" 
-</head>
-<body>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"> 
+{% endblock %}
+{% block body %}
     
     {% block content %} <!-- este bloque en particular describe a un contenido el cual es heredado -->
     {% include 'navbar.html' %}
     {% endblock %}
-</body>
-</html>
+
+{% endblock %}

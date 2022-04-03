@@ -1,9 +1,12 @@
+from ensurepip import bootstrap
 from flask import Flask, redirect #Es un mini framework de Python creador de APIs como FastAPI(todavia no que se diferencia tienen xd)
 from flask import request #nos sirve para preguntar y obtener una respuesta del server con la ip (request Body)
 from flask import make_response
 from flask import render_template # puede renderizar archivos HTML para retornarlos (es obligatorio crear una carpeta con el nombre 'templates' o si no el programa no encuentra el archivo)
+from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
+bootstrap = Bootstrap(app)
 
 Todos = ['TODO 1', 'TODO 2', 'TODO 3']
 
