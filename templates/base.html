@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" 
 </head>
 <body>
-    {% include 'navbar.html' %}
-    {% block content %} <!-- este bloque en particular describe a un contenido el cual es heredado -->
     
+    {% block content %} <!-- este bloque en particular describe a un contenido el cual es heredado -->
+    {% include 'navbar.html' %}
     {% endblock %}
 </body>
 </html>

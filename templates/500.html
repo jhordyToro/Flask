@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{super()}}
+    500
+{% endblock %}
+
+{% block content %}
+    <img src="{{ url_for('static', filename='images/500.jfif')}}" alt="internal_server_error" >
+    <h1>Internal server error :(</h1>
+    <p>sorry, the server not funtion. we are fixing it</p>
+{% endblock %} 

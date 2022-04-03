@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+    {{super()}} 
+    404
+{% endblock %}
+
+{% block content %}
+    <img src="{{ url_for('static', filename='images/404.jfif') }}" alt="not_found">
+    <h1>Sorry, Your search was not found :(</h1>
+{% endblock %}
