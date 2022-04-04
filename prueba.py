@@ -10,7 +10,7 @@ bootstrap = Bootstrap(app)
 
 class loginForm(FlaskForm):
     user_name = StringField('user name', validators=[DataRequired])
-    password = PasswordField('password', validators=DataRequired)
+    password = PasswordField('password', validators=[DataRequired])
     submit = SubmitField('enviar')
 
 
