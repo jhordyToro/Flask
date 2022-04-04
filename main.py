@@ -1,13 +1,22 @@
-from ensurepip import bootstrap
 from flask import Flask, redirect #Es un mini framework de Python creador de APIs como FastAPI(todavia no que se diferencia tienen xd)
 from flask import request #nos sirve para preguntar y obtener una respuesta del server con la ip (request Body)
 from flask import make_response
 from flask import render_template # puede renderizar archivos HTML para retornarlos (es obligatorio crear una carpeta con el nombre 'templates' o si no el programa no encuentra el archivo)
 from flask_bootstrap import Bootstrap # es una libreria de Flask que nos permite decorar mas nuestro sitio web con su propia sintaxis
 from flask import session # nos permite guardar informacion que permanece entre cada request (manda la informacion incriptada a diferencia de las cookies)
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField,SubmitField
+from wtforms.validators import DataRequired
+
+from prueba import login_form 
 
 app = Flask(__name__)
 bootstrap = Bootstrap(app) # asi se inicializa BootsTrap
+
+class log_form(FlaskForm):
+    user_name = StringField('user name', validators=[DataRequired()])
+    password = PasswordField('password', validators=[DataRequired()])
+    submit = SubmitField('enviar')
 
 app.config['SECRET_KEY'] = '!·$%&/()' # nos permite configurar una llave secreta 
 
@@ -39,15 +48,14 @@ def home():
     
     # user_ip = request.cookies.get('user_ip') --> #Hacemos un requeste preguntandole al server sobre la cookie que tiene nombre 'user_ip' y lo gurdamos en una variable
     user_ip = session.get('user_ip') # pedimos el valor que se guardo anteriormente y lo guardamos en otra variable (en este caso con el mismo nobre)
+    login = login_form()
 
     context = {
         'todos': Todos,
-        'user_ip': user_ip
+        'user_ip': user_ip,
+        'login': login
     }
 
     return  render_template('hello.html', **context) #Un templeate -> archivo de HTML -> renderiza informacion: Estatica o DInamica -> por variables -> luego nos muestra en el navegador
 
 
-
-if __name__ == '__main__':
-    app.run(debug=True) #esto es para hacer que el codigo corra sin hacer ningun (set FLASK_APP=main o set FLASK_DEBUG=1 y fast run) directamente lo instanciamos en el codigo

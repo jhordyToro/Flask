@@ -20,12 +20,13 @@
     {% endif %} <!-- siempre hay que cerrar todo es como las etiquetas en HTML -->
 
     <div class="container">
-        {{ wtf.quick_form() }}
-    </div>
+        {{ wtf.quick_form(login) }}
+    
 
     <ul>
         {% for todo in todos %}
         {{ macros.macro_todo(todo) }}
         {% endfor %}
     </ul>
+    </div>
 {% endblock %} <!-- TODO ES TODO -->

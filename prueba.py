@@ -1,18 +1,17 @@
+from asyncio import DatagramTransport
 from flask import Flask, redirect,request,make_response,render_template,session
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
 from wtforms import StringField,PasswordField,SubmitField
 from wtforms.validators import DataRequired
 
-
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
 
-class loginForm(FlaskForm):
-    user_name = StringField('user name', validators=[DataRequired])
-    password = PasswordField('password', validators=[DataRequired])
-    submit = SubmitField('enviar')
-
+class login_form(FlaskForm):
+    user_name = StringField('user name', validators=[DataRequired()])
+    password = PasswordField('password', validators=[DataRequired()])
+    submit = SubmitField('Enviar')
 
 app.config['SECRET_KEY'] = 'SUPER SECRETOxd'
 
@@ -43,7 +42,7 @@ def index():
 @app.route('/home')
 def home():
     user_ip = session.get('user_ip')
-    login = loginForm
+    login = login_form()
     context = {
         'user_ip': user_ip,
         'todos': todos,
@@ -51,5 +50,4 @@ def home():
     }
     return render_template('hello.html', **context)
 
-if __name__ == '__main__':
-    app.run(debug=True)
+
