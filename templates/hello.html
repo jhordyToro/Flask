@@ -1,5 +1,6 @@
 {% extends 'base.html' %} <!-- esta es la manera de extender otros archivos o heredarlos hacia otro y se configuran unos a otros mediante bloques -->
 {% import 'macros.html' as macros %}
+{% import 'bootstrap/wtf.html' as wtf %}
 
 <!-- este bloque esta enlasado al que fue eredado asi que lo que este adentro actuara igual con el bloque heredado -->
 <!-- 'super()' es para convinar dos bloques sin que uno sobrescriba a otro -->
@@ -17,6 +18,10 @@
     {% else %}
     <a href="{{ url_for('index') }}">ir a inicio</a> <!-- de esta manera de llama a una ruta del archivo main.py "como le dicen en FastAPI el Path parameter decorator" -->
     {% endif %} <!-- siempre hay que cerrar todo es como las etiquetas en HTML -->
+
+    <div class="container">
+        {{ wtf.quick_form() }}
+    </div>
 
     <ul>
         {% for todo in todos %}
