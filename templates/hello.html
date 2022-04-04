@@ -15,7 +15,7 @@
     {{ super() }}
     
     {% if username %}
-        <h1>Welcome to the house, {{ username }}</h1>
+        <h1>Welcome to the house, {{ username | capitalize }}</h1>
     {% endif %}
     
     {% if user_ip %} <!-- de esta manera se pueden generar condicionales dentro de esta -->

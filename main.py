@@ -1,4 +1,3 @@
-from crypt import methods
 from flask import Flask, redirect #Es un mini framework de Python creador de APIs como FastAPI(todavia no que se diferencia tienen xd)
 from flask import request #nos sirve para preguntar y obtener una respuesta del server con la ip (request Body)
 from flask import make_response, url_for
@@ -52,7 +51,7 @@ def index():
 
 
 
-@app.route('/home', methods=['GET','POST'])
+@app.route('/home', methods=['GET','POST']) #por defecto flask solo tiene a get por eso hay que espesificar que estamos utilizando ya que luego conlleva a un error
 def home():
     
     # user_ip = request.cookies.get('user_ip') --> #Hacemos un requeste preguntandole al server sobre la cookie que tiene nombre 'user_ip' y lo gurdamos en una variable
@@ -66,9 +65,10 @@ def home():
         'login': login,
         'username': user_name
     }
-    if login.validate_on_submit():
-        user_name = login.user_name.data
-        session['username'] = user_name
+    # if request.method == 'POST': --> # tal ves no te funcione el por defecto asi que este te puede funcionar
+    if login.validate_on_submit(): #si la clase login realiza un submit validator entonces:
+        user_name = login.user_name.data #pedimos el dato de la llave user_name de la clase login
+        session['username'] = user_name 
         return redirect(url_for('index'))
 
     return  render_template('hello.html', **context) #Un templeate -> archivo de HTML -> renderiza informacion: Estatica o DInamica -> por variables -> luego nos muestra en el navegador

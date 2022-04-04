@@ -1,5 +1,4 @@
-from asyncio import DatagramTransport
-from flask import Flask, redirect,request,make_response,render_template,session
+from flask import Flask, redirect,request,make_response,render_template,session,url_for
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
 from wtforms import StringField,PasswordField,SubmitField
@@ -39,15 +38,23 @@ def index():
 # def index():
 #     raise(Exception('500 error'))
 
-@app.route('/home')
+@app.route('/home', methods=['POST', 'GET'])
 def home():
     user_ip = session.get('user_ip')
     login = login_form()
+    username = session.get('username')
     context = {
         'user_ip': user_ip,
         'todos': todos,
-        'login': login
+        'login': login,
+        'username': username
     }
+    if request.method == 'POST':
+        username = login.user_name.data 
+        session['username'] = username
+
+        return redirect(url_for('index'))
+    
     return render_template('hello.html', **context)
 
 
