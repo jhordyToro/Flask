@@ -13,10 +13,15 @@
 
 {% block content %} <!-- este bloque esta enlazado a base.html -->
     {{ super() }}
+    
+    {% if username %}
+        <h1>Welcome to the house, {{ username }}</h1>
+    {% endif %}
+    
     {% if user_ip %} <!-- de esta manera se pueden generar condicionales dentro de esta -->
-    <h1>Hello World, By Flask... your ip is {{user_ip}} :D</h1>
+        <h3>Hello World, By Flask... your ip is {{user_ip}} :D</h3>
     {% else %}
-    <a href="{{ url_for('index') }}">ir a inicio</a> <!-- de esta manera de llama a una ruta del archivo main.py "como le dicen en FastAPI el Path parameter decorator" -->
+        <a href="{{ url_for('index') }}">ir a inicio</a> <!-- de esta manera de llama a una ruta del archivo main.py "como le dicen en FastAPI el Path parameter decorator" -->
     {% endif %} <!-- siempre hay que cerrar todo es como las etiquetas en HTML -->
 
     <div class="container">
