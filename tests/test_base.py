@@ -19,10 +19,10 @@ class MainTest(TestCase):
     def test_index_redirect(self):
         response = self.client.get(url_for('index'))
 
-        self.assertRedirects(response, url_for('hello'))
+        self.assertRedirects(response, url_for('home'))
 
     def test_hello_get(self):
-        response = self.client.get(url_for('hello'))
+        response = self.client.get(url_for('home'))
 
         self.assert200(response)
 
@@ -31,6 +31,6 @@ class MainTest(TestCase):
             'username': 'fake',
             'password': 'fake_password'
         }
-        response = self.client.post(url_for('hello'), data=fake_form)
+        response = self.client.post(url_for('home'), data=fake_form)
 
         self.assertRedirects(response, url_for('index'))

@@ -38,7 +38,7 @@ def internal_server_error(error):
 #ROUTES (rutas)
 @app.cli.command()
 def test():
-    test = unittest.TestLoader.discover('tests')
+    tests = unittest.TestLoader().discover('tests')
     unittest.TextTestRunner().run(tests)
 
 
