@@ -1,4 +1,5 @@
-from flask import Flask, redirect #Es un mini framework de Python creador de APIs como FastAPI(todavia no que se diferencia tienen xd)
+from imghdr import tests
+from flask import Flask, flash, redirect #Es un mini framework de Python creador de APIs como FastAPI(todavia no que se diferencia tienen xd)
 from flask import request #nos sirve para preguntar y obtener una respuesta del server con la ip (request Body)
 from flask import make_response, url_for
 from flask import render_template # puede renderizar archivos HTML para retornarlos (es obligatorio crear una carpeta con el nombre 'templates' o si no el programa no encuentra el archivo)
@@ -7,6 +8,7 @@ from flask import session # nos permite guardar informacion que permanece entre 
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField,SubmitField
 from wtforms.validators import DataRequired
+import unittest
 
 from prueba import login_form 
 
@@ -34,6 +36,11 @@ def internal_server_error(error):
 
 
 #ROUTES (rutas)
+@app.cli.command()
+def test():
+    test = unittest.TestLoader.discover('tests')
+    unittest.TextTestRunner().run(tests)
+
 
 # @app.route('/')
 # def index():
@@ -69,6 +76,9 @@ def home():
     if login.validate_on_submit(): #si la clase login realiza un submit validator entonces:
         user_name = login.user_name.data #pedimos el dato de la llave user_name de la clase login
         session['username'] = user_name 
+
+        flash('Your name has been successfully registered :D')
+
         return redirect(url_for('index'))
 
     return  render_template('hello.html', **context) #Un templeate -> archivo de HTML -> renderiza informacion: Estatica o DInamica -> por variables -> luego nos muestra en el navegador
